@@ -6,11 +6,13 @@ from openai import OpenAI
 st.write("Secrets available:", list(st.secrets.keys()))
 
 if "OPENAI_API_KEY" not in st.secrets:
-    st.error("OPENAI_API_KEY NOT FOUND. Add it in Streamlit Cloud Secrets.")
-else:
-    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+    st.error("OPENAI_API_KEY missing.")
+    st.stop()
 
-client = OpenAI()
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+
+def get_client():
+    return OpenAI()
 
 
 uploaded = st.file_uploader("Upload your retail data", type=["csv", "xlsx"])
@@ -177,6 +179,7 @@ if uploaded:
 
     st.subheader("AI Retail Insights")
     st.write(res.choices[0].message["content"])
+
 
 
 
