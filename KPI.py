@@ -15,6 +15,7 @@ os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 st.title("AI Retail Insight Agent")
 def get_client():
     return OpenAI()
+client = get_client()
 
 
 uploaded = st.file_uploader("Upload your retail data", type=["csv", "xlsx"])
@@ -181,6 +182,7 @@ if uploaded:
 
     st.subheader("AI Retail Insights")
     st.write(res.choices[0].message["content"])
+
 
 
 
