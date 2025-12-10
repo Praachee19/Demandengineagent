@@ -12,7 +12,7 @@ if "OPENAI_API_KEY" not in st.secrets:
     st.stop()
 
 os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
-
+st.title("AI Retail Insight Agent")
 def get_client():
     return OpenAI()
 
@@ -181,6 +181,7 @@ if uploaded:
 
     st.subheader("AI Retail Insights")
     st.write(res.choices[0].message["content"])
+
 
 
 
