@@ -2,10 +2,16 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from openai import OpenAI
-client = OpenAI()
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+# Debug print
+st.write("Secrets available:", list(st.secrets.keys()))
 
-st.title("AI Retail Insight Agent")
+if "OPENAI_API_KEY" not in st.secrets:
+    st.error("OPENAI_API_KEY NOT FOUND. Add it in Streamlit Cloud Secrets.")
+else:
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+
+client = OpenAI()
+
 
 uploaded = st.file_uploader("Upload your retail data", type=["csv", "xlsx"])
 
@@ -145,7 +151,7 @@ if uploaded:
     # ---------------------------------------------
     # AI Retail Analyst
     # ---------------------------------------------
-
+    st.title("AI Retail Insight Agent")
     prompt = f"""
     You are a senior Retail AI Analyst.
 
@@ -171,6 +177,7 @@ if uploaded:
 
     st.subheader("AI Retail Insights")
     st.write(res.choices[0].message["content"])
+
 
 
 
