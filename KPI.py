@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from openai import OpenAI
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 st.title("AI Retail Insight Agent")
 
@@ -170,6 +171,7 @@ if uploaded:
 
     st.subheader("AI Retail Insights")
     st.write(res.choices[0].message["content"])
+
 
 
 
