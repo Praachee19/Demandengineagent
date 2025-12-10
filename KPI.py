@@ -2,7 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from openai import OpenAI
-
+os.environ["OPENAI_API_KEY"] = "sk-abcdef1234567890abcdef1234567890abcdef12"
+client = OpenAI()
+st.title("AI Retail Insight Agent")
 st.title("AI Retail Insight Agent")
 
 uploaded = st.file_uploader("Upload your retail data", type=["csv", "xlsx"])
@@ -170,3 +172,4 @@ if uploaded:
 
     st.subheader("AI Retail Insights")
     st.write(res.choices[0].message["content"])
+
