@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from openai import OpenAI
+import os
+
 # Debug print
 st.write("Secrets available:", list(st.secrets.keys()))
 
@@ -179,6 +181,7 @@ if uploaded:
 
     st.subheader("AI Retail Insights")
     st.write(res.choices[0].message["content"])
+
 
 
 
